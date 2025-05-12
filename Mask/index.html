@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cocktail</title>
+    </head>
+    <link rel="stylesheet" href="index.css">
+
+    <body>
+        
+        <div class="container">
+            
+            <h2>SCRAPED COCKTAIL RECEPIES</h2>
+            <table>
+                <tr>
+                    <th>temp_id</th>
+                    <th>Drink Name</th>
+                    <th>Ingredient</th>
+                    <th>Measurment</th>
+                    <th>Date Scraped</th>
+                </tr>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row.temp_id }}</td>
+                    <td>{{ row.drink_name }}</td>
+                    <td>{{ row.ingredient }}</td>
+                    <td>{{ row.measurement }}</td>
+                    <td>{{ row.date_scraped }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+             <div class="pagination">
+        {% if page > 1 %}
+            <a href="{{ url_for('show_table', page=page-1) }}">&laquo; Previous</a>
+        {% endif %}
+
+        <span>Page {{ page }} of {{ total_pages }}</span>
+
+        {% if page < total_pages %}
+            <a href="{{ url_for('show_table', page=page+1) }}">Next &raquo;</a>
+        {% endif %}
+    </div>
+        </div>
+    </body>
+</html>
